@@ -42,7 +42,7 @@ Citizen.CreateThread(function()
 
 	while true do
 		Citizen.Wait(0)
-
+		local sleep = true
 		if IsPauseMenuActive() then -- ESC Key
 			if not isPauseMenu then
 				isPauseMenu = not isPauseMenu
@@ -69,22 +69,28 @@ Citizen.CreateThread(function()
 
 
 	end
+	if sleep then
+ 	 Citizen.Wait(1000)
+end
 end)
 
 -- Date and time update
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1000)
+		local sleep = true
 		if Config.ui.showDate == true then
 			SendNUIMessage({ action = 'setText', id = 'date', value = trewDate() })
 		end
+	end
+	if sleep then
+  	Citizen.Wait(1000)
 	end
 end)
 
 -- Location update
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(100)
+		local sleep = true
 
 		local player = GetPlayerPed(-1)
 
@@ -120,6 +126,9 @@ Citizen.CreateThread(function()
 		-- 	SendNUIMessage({ action = 'setText', id = 'identifier', value = idMessageString })
 		-- end
 	end
+		if sleep then
+ 	 Citizen.Wait(1000)
+	end
 end)
 
 -- Vehicle Info
@@ -136,7 +145,7 @@ Citizen.CreateThread(function()
 	
 	while true do
 
-		Citizen.Wait(100)
+		local sleep = true
 
 		local player = GetPlayerPed(-1)
 		local vehicle = GetVehiclePedIsIn(player, false)
@@ -284,6 +293,9 @@ Citizen.CreateThread(function()
 
 		SendNUIMessage(vehicleInfo)
 	end
+		if sleep then
+ 	 Citizen.Wait(1000)
+		end
 end)
 
 ---Player drunk level
@@ -312,7 +324,7 @@ AddEventHandler('playerSpawned', function()
 
 Citizen.CreateThread(function()
 		while true do
-			Citizen.Wait(1000)
+			local sleep = true
 			
 			local ALCOOL
 	
@@ -325,6 +337,9 @@ Citizen.CreateThread(function()
 			    value = ALCOOL
 			});
 		end
+		if sleep then
+ 	 	Citizen.Wait(1000)
+		end
 	end)	
 
 
@@ -333,7 +348,7 @@ Citizen.CreateThread(function()
 Citizen.CreateThread(function()
 
 	while true do
-		Citizen.Wait(1000)
+		local sleep = true
 
 		local playerStatus 
 		local showPlayerStatus = 0
@@ -378,6 +393,9 @@ Citizen.CreateThread(function()
 			SendNUIMessage(playerStatus)
 		end
 
+	end
+		if sleep then
+  	Citizen.Wait(1000)
 	end
 end)
 
@@ -465,7 +483,7 @@ Citizen.CreateThread(function()
 	    RequestAnimDict('mp_facial')
 
 	    while true do
-	        Citizen.Wait(300)
+	        local sleep = true
 	        local playerID = PlayerId()
 
 	        for _,player in ipairs(GetActivePlayers()) do
@@ -480,7 +498,9 @@ Citizen.CreateThread(function()
 	            end
 	        end
 	    end
-
+		if sleep then
+ 	 Citizen.Wait(1000)
+	end
 	end
 end)
 
@@ -495,7 +515,7 @@ Citizen.CreateThread(function()
 		local voiceDistance = nil
 
 		while true do
-			Citizen.Wait(1)
+			local sleep = true
 
 
 
@@ -537,10 +557,12 @@ Citizen.CreateThread(function()
 				voiceDistance = 'whisper'
 			end
 
-
+		
 		end
 
-
+	if sleep then
+ 	 Citizen.Wait(1000)
+	end
 
 
 
@@ -554,7 +576,7 @@ end)
 Citizen.CreateThread(function()
 	if Config.ui.showWeapons == true then
 		while true do
-			Citizen.Wait(100)
+			local sleep = true
 
 			local player = GetPlayerPed(-1)
 			local status = {}
@@ -603,6 +625,9 @@ Citizen.CreateThread(function()
 			SendNUIMessage({ action = 'updateWeapon', status = status })
 
 		end
+	end
+		if sleep then
+  		Citizen.Wait(1000)
 	end
 end)
 
